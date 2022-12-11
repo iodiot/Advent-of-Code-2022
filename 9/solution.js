@@ -18,7 +18,7 @@ const moves = input.split('\n').map(line => {
 
 function simulate_rope(moves, knots = 2) {
   const rope = [...new Array(knots)].map(_ => [0, 0]);
-  const visited = { '0|0': true };
+  const visited = {};
   const movesClone = JSON.parse(JSON.stringify(moves));
 
   for (let move of movesClone) {
@@ -27,6 +27,7 @@ function simulate_rope(moves, knots = 2) {
         const head = rope[i];
         const tail = rope[i + 1];
 
+        // move head
         if (i === 0) {
           head[0] += Math.sign(move[0]);
           head[1] += Math.sign(move[1]);
@@ -41,6 +42,7 @@ function simulate_rope(moves, knots = 2) {
           tail[1] += Math.sign(head[1] - tail[1]);
         }
 
+        // mark that tail visited the place
         if (i === rope.length - 2) {
           visited[tail.join('|')] = true;
         }
