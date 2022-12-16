@@ -23,8 +23,8 @@ for (let y = 0; y < map.length; ++y) {
       queue_1.push(new Path(x, y));
       queue_2.push(new Path(x, y));
     } else if (map[y][x] === 'a') {
-    queue_2.push(new Path(x, y));
-  }
+      queue_2.push(new Path(x, y));
+    }
   }
 }
 
@@ -34,13 +34,12 @@ function traverse(queue) {
 
   while (queue.length > 0) {
     const path = queue.pop();
-
     const hash = [path.x, path.y].join('-');
 
     if (!(hash in dp)) {
       dp[hash] = path.steps;
-    } else {
-      if (dp[hash] <= path.steps) continue;
+    } else if (dp[hash] <= path.steps) {
+      continue;
     }
 
     if (map[path.y][path.x] === 'E') {
@@ -61,6 +60,8 @@ function traverse(queue) {
       queue.unshift(new Path(nx, ny, path.steps + 1));
     }
   }
+
+  return -1;
 }
 
 console.log(`part 1: ${ traverse(queue_1) }`);
