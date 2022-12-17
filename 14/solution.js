@@ -75,8 +75,8 @@ const cave_1 = new Cave(), cave_2 = new Cave(true);
 
 for (const line of lines) {
   const pattern = line.split(' -> ').map(p => p.split(',').map(s => +s));
-  cave_1.add_rocks(pattern, true);
-  cave_2.add_rocks(pattern, true);
+  cave_1.add_rocks(pattern);
+  cave_2.add_rocks(pattern);
 }
 
 let part_1 = 0;
